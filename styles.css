@@ -1,76 +1,4 @@
-body {
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
-    font-family: 'Lobster', cursive;
-    overflow: auto;
-    position: relative;
-    margin: 0;
-    min-height: 100vh;
-}
-
-.container {
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.card {
-    background: #fff9e6;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
-    margin: 20px auto;
-    max-width: 95%;
-    border: 3px solid #ff69b4;
-}
-
-h1 {
-    color: #ff1493;
-    font-size: 1.8em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    margin: 10px 0;
-}
-
-.moving-text {
-    font-size: 1.2em;
-    color: #ff4500;
-    margin: 15px 0;
-    animation: bounce 2s infinite;
-}
-/* Add these new styles */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.card {
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 30px;
-    animation: flash 2s infinite;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.message-container {
-    text-align: center;
-    margin: 20px 0;
-}
-
-@keyframes flash {
-    0% { box-shadow: 0 0 20px rgba(255,105,180,0.5); }
-    50% { box-shadow: 0 0 40px rgba(255,20,147,0.8); }
-    100% { box-shadow: 0 0 20px rgba(255,105,180,0.5); }
-}
-
+/* Global styles */
 body {
     background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
     font-family: 'Lobster', cursive;
@@ -79,121 +7,124 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container {
     width: 95%;
     max-width: 600px;
     padding: 20px;
     text-align: center;
-}
-
-.card {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Card styling with flex to align elements vertically */
+  .card {
     background: #fff9e6;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
     border: 3px solid #ff69b4;
-    animation: flash 2s infinite;
-}
-
-@keyframes flash {
-    0% { transform: scale(0.98); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(0.98); }
-}
-
-.music-widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 500px;
+  }
+  
+  h1 {
+    color: #ff1493;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin: 10px 0;
+  }
+  
+  .message-container {
     margin: 20px 0;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* Video container */
-.video-wrapper {
-    display: none;
-    max-width: 300px;
-    margin: 20px auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(255,20,147,0.5);
-}
-
-.video-wrapper.active {
-    display: block;
-}
-
-.video-wrapper iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-}
-
-/* Rest of your existing CSS styles */
-/* (Keep previous styles for countdown, moving-text, decorations, etc.) */
-
-/* Add mobile centering */
-@media (max-width: 768px) {
-    .card {
-        width: 95%;
-        padding: 20px;
-    }
-    
-    h1 {
-        font-size: 1.6rem;
-        text-align: center;
-    }
-    
-    .music-button {
-        width: 90%;
-        max-width: 300px;
-    }
-}
-
-.countdown-style {
+  }
+  
+  .moving-text {
+    font-size: 1.2em;
+    color: #ff4500;
+    margin: 15px 0;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .countdown-style {
     font-size: 1.4em;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     margin: 20px 0;
     animation: glow 2s ease-in-out infinite;
-}
-
-.music-button {
-    padding: 12px 25px;
-    font-size: 1.1em;
-    background: #ff69b4;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 10px 0;
-}
-
-/* Candle flames */
-.cake {
+  }
+  
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
+  }
+  
+  /* Media container styles */
+  .media-container {
+    margin-top: 20px;
+  }
+  
+  .music-widget-wrapper iframe {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 125px;
+  }
+  
+  /* Video container */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255,20,147,0.5);
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Cake, candles, and frosting */
+  .cake {
     position: relative;
     width: 120px;
     height: 100px;
-    margin: 20px auto;
-}
-
-.candles {
+    margin: 20px auto 0 auto;
+  }
+  
+  .candles {
     position: absolute;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
-}
-
-.candle {
+    align-items: flex-end;
+  }
+  
+  .candle {
     width: 10px;
     height: 40px;
     background: #fff;
     position: relative;
-}
-
-.flame {
+    border-radius: 3px;
+  }
+  
+  .flame {
     position: absolute;
     top: -20px;
     left: 50%;
@@ -204,80 +135,90 @@ body {
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     animation: flicker 0.1s infinite;
     filter: drop-shadow(0 0 5px orange);
-}
-
-@keyframes flicker {
+  }
+  
+  @keyframes flicker {
     0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
     50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
     100% { transform: translateX(-50%) scale(0.95); opacity: 0.8; }
-}
-
-
-.confetti {
+  }
+  
+  .frosting {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    animation: confettiFall linear infinite;
-}
-
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    margin: 20px 0;
-    display: none;
-}
-
-.video-wrapper iframe {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  /* Flowers around the card */
+  #flowers-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: none;
-}
-
-@media (max-width: 480px) {
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .flower {
+    position: absolute;
+    animation: floatFlower 8s infinite alternate ease-in-out;
+  }
+  
+  @keyframes floatFlower {
+    0% { transform: translate(0, 0); opacity: 0.8; }
+    50% { transform: translate(10px, -10px); opacity: 1; }
+    100% { transform: translate(0, 0); opacity: 0.8; }
+  }
+  
+  /* Fireworks along the edges */
+  #fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  .firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+    animation: explode 1s ease-out infinite;
+  }
+  
+  @keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(2); opacity: 0.5; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
     h1 {
-        font-size: 1.5em;
+      font-size: 1.5em;
     }
     
     .moving-text {
-        font-size: 1em;
+      font-size: 1em;
     }
     
     .countdown-style {
-        font-size: 1.2em;
-    }
-    
-    .music-button {
-        padding: 10px 20px;
-        font-size: 1em;
+      font-size: 1.2em;
     }
     
     .cake {
-        width: 80px;
-        height: 50px;
+      width: 80px;
+      height: 50px;
     }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4; }
-    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
-}
-
-@keyframes flicker {
-    0% { transform: scaleY(1); }
-    50% { transform: scaleY(1.1); }
-    100% { transform: scaleY(0.9); }
-}
-
-@keyframes confettiFall {
-    0% { transform: translateY(-100vh) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
-}
+  }
+  
