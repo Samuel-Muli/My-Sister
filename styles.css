@@ -1,4 +1,4 @@
-/* Global styles */
+/* Updated CSS */
 body {
     background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
     font-family: 'Lobster', cursive;
@@ -7,8 +7,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     overflow: hidden;
+    position: relative;
   }
   
   .container {
@@ -20,18 +20,111 @@ body {
     z-index: 2;
   }
   
-  /* Card styling with flex to align elements vertically */
   .card {
     background: #fff9e6;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
     border: 3px solid #ff69b4;
+    position: relative;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 500px;
   }
+  
+  /* Improved Media Container */
+  .media-container {
+    margin: 20px 0;
+    min-height: 125px;
+    position: relative;
+  }
+  
+  .music-widget-wrapper, .video-wrapper {
+    transition: opacity 0.5s ease;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  /* Enhanced Flowers Animation */
+  #flowers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .flower {
+    position: absolute;
+    animation: float 8s infinite linear;
+    font-size: 25px;
+    opacity: 0.8;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  /* Orbiting Flowers */
+@keyframes orbit {
+    from { transform: rotate(var(--angle)) translateX(var(--radius)) rotate(0deg); }
+    to { transform: rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)) rotate(-360deg); }
+}
+
+.flower {
+    animation-timing-function: linear;
+    will-change: transform;
+}
+
+/* Confetti System */
+.confetti-container {
+    position: fixed;
+    top: -10vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 3s linear infinite;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* Enhanced Fireworks */
+.firework {
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #fff 20%, transparent 60%);
+    animation: fireworkBurst 1.5s ease-out infinite;
+}
+
+@keyframes fireworkBurst {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(3); opacity: 0.5; }
+    100% { transform: scale(5); opacity: 0; }
+}
   
   h1 {
     color: #ff1493;
@@ -107,34 +200,33 @@ body {
     margin: 20px auto 0 auto;
   }
   
-  .candles {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  /* Better Candle Alignment */
+.candles {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
   }
   
   .candle {
-    width: 10px;
-    height: 40px;
-    background: #fff;
-    position: relative;
+    width: 12px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
     border-radius: 3px;
+    position: relative;
   }
   
   .flame {
+    width: 14px;
+    height: 24px;
+    background: linear-gradient(to bottom, #ffd700, #ff8c00);
+    border-radius: 50% 50% 40% 40%;
     position: absolute;
-    top: -20px;
+    top: -18px;
     left: 50%;
     transform: translateX(-50%);
-    width: 15px;
-    height: 25px;
-    background: #ffd700;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    animation: flicker 0.1s infinite;
-    filter: drop-shadow(0 0 5px orange);
+    animation: flicker 0.08s infinite alternate;
   }
   
   @keyframes flicker {
