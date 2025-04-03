@@ -148,4 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('beforeunload', () => {
         clearInterval(celebrationInterval);
     });
+
+        // Auto-refresh every 5 minutes
+        setTimeout(() => location.reload(), 300000);
 });
