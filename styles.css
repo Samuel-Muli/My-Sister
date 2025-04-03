@@ -1,4 +1,4 @@
-/* Updated CSS */
+/* Base Styles */
 body {
     background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
     font-family: 'Lobster', cursive;
@@ -9,45 +9,147 @@ body {
     align-items: center;
     overflow: hidden;
     position: relative;
-  }
-  
-  .container {
+}
+
+/* Container & Card */
+.container {
     width: 95%;
     max-width: 600px;
     padding: 20px;
     text-align: center;
     position: relative;
     z-index: 2;
-  }
-  
-  .card {
+}
+
+.card {
     background: #fff9e6;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
     border: 3px solid #ff69b4;
-    position: relative;
     min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  /* Improved Media Container */
-  .media-container {
+}
+
+/* Text Elements */
+h1 {
+    color: #ff1493;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin: 10px 0;
+}
+
+.moving-text {
+    font-size: 1.2em;
+    color: #ff4500;
+    margin: 15px 0;
+    animation: bounce 2s infinite;
+}
+
+.countdown-style {
+    font-size: 1.4em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 20px 0;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Media Elements */
+.media-container {
     margin: 20px 0;
     min-height: 125px;
     position: relative;
-  }
-  
-  .music-widget-wrapper, .video-wrapper {
-    transition: opacity 0.5s ease;
+}
+
+.music-widget-wrapper, .video-wrapper {
     border-radius: 15px;
     overflow: hidden;
-  }
-  
-  /* Enhanced Flowers Animation */
-  #flowers-container {
+    transition: opacity 0.5s ease;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Cake Elements */
+.cake {
+    position: relative;
+    width: 120px;
+    height: 100px;
+    margin: 20px auto 0 auto;
+}
+
+.candles {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.candle {
+    width: 12px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    border-radius: 3px;
+    position: relative;
+}
+
+.flame {
+    width: 14px;
+    height: 24px;
+    background: linear-gradient(to bottom, #ffd700, #ff8c00);
+    border-radius: 50% 50% 40% 40%;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flicker 0.08s infinite alternate;
+}
+
+.frosting {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+    100% { transform: translateX(-50%) scale(0.95); opacity: 0.8; }
+}
+
+/* Effects */
+#flowers-container, #fireworks-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -55,64 +157,21 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 1;
-  }
-  
-  .flower {
-    position: absolute;
-    animation: float 8s infinite linear;
-    font-size: 25px;
-    opacity: 0.8;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(100vh) rotate(0deg);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-20vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-  /* Orbiting Flowers */
-@keyframes orbit {
-    from { transform: rotate(var(--angle)) translateX(var(--radius)) rotate(0deg); }
-    to { transform: rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)) rotate(-360deg); }
 }
 
 .flower {
-    animation-timing-function: linear;
-    will-change: transform;
-}
-
-/* Confetti System */
-.confetti-container {
-    position: fixed;
-    top: -10vh;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 999;
-}
-
-.confetti {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    animation: confettiFall 3s linear infinite;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    font-size: 25px;
+    opacity: 0.8;
+    animation: float 8s infinite linear;
 }
 
-@keyframes confettiFall {
-    0% { transform: translateY(-10vh) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(720deg); }
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
 }
 
-/* Enhanced Fireworks */
 .firework {
     width: 6px;
     height: 6px;
@@ -125,192 +184,11 @@ body {
     50% { transform: scale(3); opacity: 0.5; }
     100% { transform: scale(5); opacity: 0; }
 }
-  
-  h1 {
-    color: #ff1493;
-    font-size: 1.8em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    margin: 10px 0;
-  }
-  
-  .message-container {
-    margin: 20px 0;
-  }
-  
-  .moving-text {
-    font-size: 1.2em;
-    color: #ff4500;
-    margin: 15px 0;
-    animation: bounce 2s infinite;
-  }
-  
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  .countdown-style {
-    font-size: 1.4em;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin: 20px 0;
-    animation: glow 2s ease-in-out infinite;
-  }
-  
-  @keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4; }
-    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff1493; }
-  }
-  
-  /* Media container styles */
-  .media-container {
-    margin-top: 20px;
-  }
-  
-  .music-widget-wrapper iframe {
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
-    height: 125px;
-  }
-  
-  /* Video container */
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(255,20,147,0.5);
-  }
-  
-  .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Cake, candles, and frosting */
-  .cake {
-    position: relative;
-    width: 120px;
-    height: 100px;
-    margin: 20px auto 0 auto;
-  }
-  
-  /* Better Candle Alignment */
-.candles {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 10px;
-  }
-  
-  .candle {
-    width: 12px;
-    height: 50px;
-    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-    border-radius: 3px;
-    position: relative;
-  }
-  
-  .flame {
-    width: 14px;
-    height: 24px;
-    background: linear-gradient(to bottom, #ffd700, #ff8c00);
-    border-radius: 50% 50% 40% 40%;
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: flicker 0.08s infinite alternate;
-  }
-  
-  @keyframes flicker {
-    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
-    50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
-    100% { transform: translateX(-50%) scale(0.95); opacity: 0.8; }
-  }
-  
-  .frosting {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: #fff;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-  }
-  
-  /* Flowers around the card */
-  #flowers-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .flower {
-    position: absolute;
-    animation: floatFlower 8s infinite alternate ease-in-out;
-  }
-  
-  @keyframes floatFlower {
-    0% { transform: translate(0, 0); opacity: 0.8; }
-    50% { transform: translate(10px, -10px); opacity: 1; }
-    100% { transform: translate(0, 0); opacity: 0.8; }
-  }
-  
-  /* Fireworks along the edges */
-  #fireworks-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-  }
-  
-  .firework {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle, #ffd700 0%, transparent 70%);
-    animation: explode 1s ease-out infinite;
-  }
-  
-  @keyframes explode {
-    0% { transform: scale(0); opacity: 1; }
-    50% { transform: scale(2); opacity: 0.5; }
-    100% { transform: scale(3); opacity: 0; }
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5em;
-    }
-    
-    .moving-text {
-      font-size: 1em;
-    }
-    
-    .countdown-style {
-      font-size: 1.2em;
-    }
-    
-    .cake {
-      width: 80px;
-      height: 50px;
-    }
-  }
-  
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    h1 { font-size: 1.5em; }
+    .moving-text { font-size: 1em; }
+    .countdown-style { font-size: 1.2em; }
+    .cake { width: 80px; height: 50px; }
+}
