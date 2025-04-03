@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Configuration
-    const birthdayDate = new Date('April 3, 2025 00:00:00');
+    const birthdayDate = new Date('April 7, 2025 00:00:00');
     const elements = {
         countdown: document.getElementById('countdown'),
         mediaContainer: document.querySelector('.media-container'),
