@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     let birthdayReached = false;
+    let celebrationInterval;
 
     // Media Control
     function initializeMedia() {
@@ -42,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
     }
 
-    // Countdown Timer
+    // Enhanced Countdown Timer with Milliseconds
     function updateCountdown() {
         const now = new Date();
-        const diff = birthdayDate - now;
+        let diff = birthdayDate - now;
 
         if (diff <= 0 && !birthdayReached) {
             birthdayReached = true;
@@ -54,13 +55,25 @@ document.addEventListener('DOMContentLoaded', () => {
             startCelebration();
         } else if (!birthdayReached) {
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            elements.countdown.innerHTML = `🎈 ${days} Days ${hours} Hours Until Your Special Day! 🎉`;
+            diff %= 1000 * 60 * 60 * 24;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= 1000 * 60 * 60;
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff %= 1000 * 60;
+            const seconds = Math.floor(diff / 1000);
+            const milliseconds = Math.floor(diff % 1000);
+
+            elements.countdown.innerHTML = 
+                `🎈 ${days}d ${hours}h ${minutes}m ${seconds}s ` + 
+                `<span class="milliseconds">${milliseconds.toString().padStart(3, '0')}ms</span> 🎉`+
+                `<br>Counting down to <strong>${birthdayDate.toDateString()}</strong>`+
+                `<br> <span class="moving-text">My BirthDay!</span>`; // Adding moving text for fun
+                
         }
     }
 
-    // Visual Effects
-    function createFloatingFlowers() {
+     // Visual Effects
+     function createFloatingFlowers() {
         const flowerEmojis = ['🌸', '🌺', '🌻', '🌷', '💮'];
         for(let i = 0; i < 25; i++) {
             const flower = document.createElement('div');
@@ -75,13 +88,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Enhanced Fireworks with Edge Positioning
     function createFireworks() {
-        for(let i = 0; i < 15; i++) {
+        const positions = ['top', 'bottom', 'left', 'right'];
+        const fireworksCount = birthdayReached ? 50 : 15;
+
+        for(let i = 0; i < fireworksCount; i++) {
             const firework = document.createElement('div');
             firework.className = 'firework';
+            
+            const position = positions[Math.floor(Math.random() * positions.length)];
+            let positionStyle = '';
+            
+            switch(position) {
+                case 'top':
+                    positionStyle = `top: 0%; left: ${Math.random() * 100}%;`;
+                    break;
+                case 'bottom':
+                    positionStyle = `top: 100%; left: ${Math.random() * 100}%;`;
+                    break;
+                case 'left':
+                    positionStyle = `left: 0%; top: ${Math.random() * 100}%;`;
+                    break;
+                case 'right':
+                    positionStyle = `left: 100%; top: ${Math.random() * 100}%;`;
+                    break;
+            }
+
             firework.style.cssText = `
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
+                ${positionStyle}
                 animation-delay: ${Math.random() * 3}s;
             `;
             elements.fireworksContainer.appendChild(firework);
@@ -90,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startCelebration() {
         const colors = ['#ff69b4', '#ff1493', '#ff4500', '#ffd700'];
-        setInterval(() => {
+        celebrationInterval = setInterval(() => {
             document.body.style.background = `linear-gradient(45deg, 
                 ${colors[Math.floor(Math.random() * colors.length)]},
                 ${colors[Math.floor(Math.random() * colors.length)]})`;
@@ -106,6 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialization
     initializeMedia();
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 100); // Update every 100ms
     createFloatingFlowers();
+
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+        clearInterval(celebrationInterval);
+    });
 });
